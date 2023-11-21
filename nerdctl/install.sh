@@ -10,7 +10,7 @@ nerd="https://github.com/containerd/nerdctl/releases/download/v$nerd_version/$ne
 
 curl -sSLO "$cni"
 
-mkdir -p /opt/cni/bin
+mkdir -p /opt/cni/bin && mkdir -p /home/nerdctl
 
 tar Cxzvf /opt/cni/bin "$cni_file"
 
