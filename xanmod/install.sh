@@ -4,4 +4,4 @@ echo 'deb [signed-by=/usr/share/keyrings/xanmod-archive-keyring.gpg] http://deb.
 
 apt update && apt install  -y linux-xanmod-x64v3
 
-apt purge gpg
+apt purge -y gpg
