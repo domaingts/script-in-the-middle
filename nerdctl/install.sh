@@ -20,4 +20,4 @@ tar Cxzvvf /usr/local/bin "$nerd_file"
 
 rm "$cni_file" "$nerd_file"
 
-apt install containerd gpg
+apt install -y containerd gpg
