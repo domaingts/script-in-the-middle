@@ -2,7 +2,7 @@ services:
   singbox:
     restart: always
     container_name: sing-box
-    image: miniluv/sing-box:v1.8.0-alpha.16
+    image: miniluv/sing-box:v1.8.0-beta.1
     network_mode: host
     volumes:
       - ./config.json:/etc/sing-box/config.json:ro
