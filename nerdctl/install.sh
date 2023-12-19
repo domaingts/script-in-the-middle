@@ -1,7 +1,7 @@
 #!/bin/sh
 
-cni_version="1.3.0"
-nerd_version="1.7.0"
+cni_version="1.4.0"
+nerd_version="1.7.2"
 cni_file="cni-plugins-linux-amd64-v$cni_version.tgz"
 nerd_file="nerdctl-$nerd_version-linux-amd64.tar.gz"
 cni="https://github.com/containernetworking/plugins/releases/download/v$cni_version/$cni_file"
