@@ -1,1 +1,12 @@
-
+services:
+  vehicle:
+    restart: always
+    container_name: vehicle
+    image: miniluv/vehicle:v0.0.1
+    network_mode: host
+    volumes:
+      - ./config.json:/etc/vehicle/config.json:ro
+    command: 
+      - -C
+      - /etc/vehicle
+      - run
