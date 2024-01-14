@@ -6,6 +6,7 @@ services:
     network_mode: host
     volumes:
       - ./config.json:/etc/vehicle/config.json:ro
+      - /etc/localtime:/etc/localtime:ro
     command:
       - -C
       - /etc/vehicle
