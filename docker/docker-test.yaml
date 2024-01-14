@@ -2,11 +2,10 @@ services:
   vehicle:
     restart: always
     container_name: vehicle
-    image: miniluv/vehicle:v0.0.3
+    image: miniluv/vehicle:v1.0.0
     network_mode: host
     volumes:
       - ./config.json:/etc/vehicle/config.json:ro
-      - /etc/localtime:/etc/localtime:ro
     command:
       - -C
       - /etc/vehicle
