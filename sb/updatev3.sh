@@ -2,7 +2,7 @@
 
 version="1.8.2"
 
-curl -LO "https://github.com/SagerNet/sing-box/releases/download/v1.8.2/sing-box-$version-linux-amd64v3.tar.gz"
+curl -LO "https://github.com/SagerNet/sing-box/releases/download/v$version/sing-box-$version-linux-amd64v3.tar.gz"
 
 systemctl stop sing-box
 
