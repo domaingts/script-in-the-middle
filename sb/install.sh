@@ -67,7 +67,7 @@ common() {
   "rm" "$temp_file"
   version="${version#v}"
   package="sing-box-$version-linux-amd64v3"
-  curl -L "https://github.com/SagerNet/sing-box/releases/download/v$version/$package.tar.gz" -o "$TEMPD/$package"
+  curl -L "https://github.com/SagerNet/sing-box/releases/download/v$version/$package.tar.gz" -o "$TEMPD/$package.tar.gz"
   tar xzvf "$TEMPD/$package.tar.gz"
   location="$TEMPD/${package}/sing-box"
 
