@@ -17,6 +17,9 @@ judgement_parameters() {
       'update')
         action='3'
         ;;
+      'log')
+        action='4'
+        ;;
       *)
         echo "$0: unknow parameters"
         exit 1
@@ -77,9 +80,11 @@ main() {
     rm_all
   elif [[ "$action" -eq '2' ]]; then
     rm /usr/bin/sing-box /etc/systemd/system/sing-box.service
-  elif [[ "action" -eq '3' ]]; then
+  elif [[ "$action" -eq '3' ]]; then
     update_sing_box_v3
     rm_all
+  elif [[ "$action" -eq '4' ]]; then
+    journalctl -fu sing-box -o cat
   fi
 }
 
