@@ -51,7 +51,106 @@ EOF
 
 add_configuration() {
   mkdir -p /etc/sing-box
-
+  cat << EOF > /etc/sing-box/config.json
+{
+  "log": {
+    "level": "info",
+    "timestamp": true
+  },
+  "dns": {
+    "servers": [
+      {
+        "tag": "cloudflare",
+        "address": "https://1.1.1.1"
+      }
+    ]
+  },
+  "inbounds": [
+    {
+      "type": "shadowsocks",
+      "tag": "ss-in",
+      "listen": "::1",
+      "listen_port": 1,
+      "network": "tcp",
+      "method": "2022-blake3-chacha20-poly1305",
+      "password": ""
+    }
+  ],
+  "outbounds": [
+    {
+      "type": "direct",
+      "tag": "direct"
+    },
+    {
+      "type": "dns",
+      "tag": "dns-out"
+    },
+    {
+      "type": "block",
+      "tag": "block"
+    }
+  ],
+  "route": {
+    "rules": [
+      {
+        "protocol": "dns",
+        "outbound": "dns-out"
+      },
+      {
+        "rule_set": [
+          "geosite-play"
+        ],
+        "outbound": "direct"
+      },
+      {
+        "ip_is_private": true,
+        "rule_set": [
+          "geoip-cn",
+          "geosite-cn",
+          "geosite-ads"
+        ],
+        "rule_set_ipcidr_match_source": true,
+        "domain_regex": [
+          "^[a-zA-Z0-9\\-]*(\\.)*(cn|([a-zA-Z]*china)|msn)\\.[a-zA-Z0-9\\-]*(\\.)*com$"
+        ],
+        "outbound": "block"
+      }
+    ],
+    "rule_set": [
+      {
+        "tag": "geoip-cn",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/SagerNet/sing-geoip/rule-set/geoip-cn.srs"
+      },
+      {
+        "tag": "geosite-cn",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-cn.srs"
+      },
+      {
+        "tag": "geosite-ads",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-category-ads-all.srs"
+      },
+      {
+        "tag": "geosite-play",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/domaingts/script-in-the-middle/rules/play.rule"
+      }
+    ],
+    "final": "direct"
+  },
+  "experimental": {
+    "cache_file": {
+      "enabled": true
+    }
+  }
+}
+EOF
 }
 
 common() {
@@ -76,6 +175,7 @@ common() {
 }
 
 add_sing_box_v3() {
+  add_configuration
   common
 }
 
