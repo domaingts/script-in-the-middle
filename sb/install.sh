@@ -59,7 +59,7 @@ add_configuration() {
 }
 
 common() {
-  TEMPD="$(maktemp -d)"
+  TEMPD="$(mktemp -d)"
   "echo" "$TEMPD"
   local temp_file
   temp_file="$(mktemp)"
