@@ -54,7 +54,7 @@ add_configuration() {
   pwd="$(openssl rand -base64 32)"
   port=$((($RANDOM % 30000) + 1000))
   "echo" "$pwd" "$port"
-  cat << EOF > /etc/sing-box/config.json
+  cat <<EOF >/etc/sing-box/config.json
 {
   "log": {
     "level": "info",
@@ -160,6 +160,11 @@ add_configuration() {
 EOF
 }
 
+uninstall() {
+  systemctl stop sing-box && systemctl disable sing-box
+  rm -rf /etc/sing-box /usr/bin/sing-box /etc/systemd/system/sing-box.service
+}
+
 common() {
   TEMPD="$(mktemp -d)"
   "echo" "$TEMPD"
@@ -167,7 +172,7 @@ common() {
   temp_file="$(mktemp)"
   if ! curl -sS -H "Accept: application/vnd.github.v3+json" -o "$temp_file" 'https://api.github.com/repos/SagerNet/sing-box/releases/latest'; then
     "rm" "$temp_file"
-     echo 'error: Failed to get release list, please check your network.'
+    echo 'error: Failed to get release list, please check your network.'
   fi
   version="$(sed 'y/,/\n/' "$temp_file" | grep 'tag_name' | awk -F '"' '{print $4}')"
   "rm" "$temp_file"
@@ -200,12 +205,12 @@ main() {
   judgement_parameters "$@"
 
   if [[ "$action" -eq '1' ]]; then
+    uninstall
     add_systemd
     add_sing_box_v3
     rm_all
   elif [[ "$action" -eq '2' ]]; then
-    systemctl stop sing-box && systemctl disable sing-box
-    rm -rf /etc/sing-box /usr/bin/sing-box /etc/systemd/system/sing-box.service
+    uninstall
   elif [[ "$action" -eq '3' ]]; then
     update_sing_box_v3
     rm_all
