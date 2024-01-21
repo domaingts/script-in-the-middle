@@ -11,7 +11,7 @@ judgement_parameters() {
       'install')
         action='1'
         ;;
-      'remove')
+      'uninstall')
         action='2'
         ;;
       'update')
@@ -79,6 +79,7 @@ main() {
     add_sing_box_v3
     rm_all
   elif [[ "$action" -eq '2' ]]; then
+    systemctl stop sing-box && systemctl disable sing-box
     rm /usr/bin/sing-box /etc/systemd/system/sing-box.service
   elif [[ "$action" -eq '3' ]]; then
     update_sing_box_v3
