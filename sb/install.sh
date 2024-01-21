@@ -52,7 +52,7 @@ EOF
 add_configuration() {
   mkdir -p /etc/sing-box
   pwd="$(openssl rand -base64 32)"
-  port="$(( RANDOM % 30000 ) + 1000)"
+  port=" $((($RANDOM % 30000) + 1000))"
   "echo" "$pwd" "$port"
   cat << EOF > /etc/sing-box/config.json
 {
