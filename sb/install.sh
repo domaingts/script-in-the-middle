@@ -1,8 +1,28 @@
-#!/bin/sh
+#!/bin/bash
 
 version="1.8.2"
 
 package="sing-box-$version-linux-amd64v3"
+
+action='0'
+
+judgement_parameters() {
+    case "$2" in
+      'install')
+        action='1'
+        ;;
+      'remove')
+        action='2'
+        ;;
+      'update')
+        action='3'
+        ;;
+      *)
+        echo "$0: unknow parameters"
+        exit 1
+        ;;
+    esac
+}
 
 add_systemd() {
     cat > /etc/systemd/system/sing-box.service << EOF
@@ -25,7 +45,7 @@ WantedBy=multi-user.target
 EOF
 }
 
-add_sing_box_v3() {
+common() {
     curl -LO "https://github.com/SagerNet/sing-box/releases/download/v$version/$package.tar.gz"
     tar xzvf "$package.tar.gz"
     location="${package}/sing-box"
@@ -34,16 +54,33 @@ add_sing_box_v3() {
     sing-box version | tee
 }
 
+add_sing_box_v3() {
+    common
+}
+
+update_sing_box_v3() {
+    systemctl stop sing-box
+    common
+    systemctl start sing-box
+}
+
 rm_all() {
   rm -rf sing-box*
 }
 
 main() {
-  add_systemd
+  judgement_parameters "$@"
 
-  add_sing_box_v3
-
-  rm_all
+  if [[ "$action" -eq '1' ]]; then
+    add_systemd
+    add_sing_box_v3
+    rm_all
+  elif [[ "$action" -eq '2' ]]; then
+    rm /usr/bin/sing-box /etc/systemd/system/sing-box.service
+  elif [[ "action" -eq '3' ]]; then
+    update_sing_box_v3
+    rm_all
+  fi
 }
 
-main
+main "$@"
