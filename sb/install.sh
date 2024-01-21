@@ -20,6 +20,9 @@ judgement_parameters() {
       'log')
         action='4'
         ;;
+      'clear')
+        action='5'
+        ;;
       *)
         echo "$0: unknow parameters"
         exit 1
@@ -86,6 +89,8 @@ main() {
     rm_all
   elif [[ "$action" -eq '4' ]]; then
     journalctl -fu sing-box -o cat
+  elif [[ "$action" -eq '5' ]]; then
+    journalctl --rotate && journalctl --vacuum-time=1s
   fi
 }
 
