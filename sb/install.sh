@@ -52,7 +52,7 @@ EOF
 add_configuration() {
   mkdir -p /etc/sing-box
   pwd="$(openssl rand -base64 32)"
-  port=" $((($RANDOM % 30000) + 1000))"
+  port=$((($RANDOM % 30000) + 1000))
   "echo" "$pwd" "$port"
   cat << EOF > /etc/sing-box/config.json
 {
@@ -73,7 +73,7 @@ add_configuration() {
       "type": "shadowsocks",
       "tag": "ss-in",
       "listen": "::1",
-      "listen_port": "$port",
+      "listen_port": $port,
       "network": "tcp",
       "method": "2022-blake3-chacha20-poly1305",
       "password": "$pwd"
