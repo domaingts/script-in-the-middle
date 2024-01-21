@@ -7,7 +7,7 @@ package="sing-box-$version-linux-amd64v3"
 action='0'
 
 judgement_parameters() {
-    case "$1" in
+    case "$2" in
       'install')
         action='1'
         ;;
