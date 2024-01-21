@@ -7,7 +7,6 @@ nerd_file="nerdctl-$nerd_version-linux-amd64.tar.gz"
 cni="https://github.com/containernetworking/plugins/releases/download/v$cni_version/$cni_file"
 nerd="https://github.com/containerd/nerdctl/releases/download/v$nerd_version/$nerd_file"
 
-
 curl -sSLO "$cni"
 
 mkdir -p /opt/cni/bin && mkdir -p /home/nerdctl

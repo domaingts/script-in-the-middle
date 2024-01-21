@@ -7,31 +7,31 @@ package="sing-box-$version-linux-amd64v3"
 action='0'
 
 judgement_parameters() {
-    case "$1" in
-      'install')
-        action='1'
-        ;;
-      'uninstall')
-        action='2'
-        ;;
-      'update')
-        action='3'
-        ;;
-      'log')
-        action='4'
-        ;;
-      'clear')
-        action='5'
-        ;;
-      *)
-        echo "$0: unknow parameters"
-        exit 1
-        ;;
-    esac
+  case "$1" in
+  'install')
+    action='1'
+    ;;
+  'uninstall')
+    action='2'
+    ;;
+  'update')
+    action='3'
+    ;;
+  'log')
+    action='4'
+    ;;
+  'clear')
+    action='5'
+    ;;
+  *)
+    echo "$0: unknow parameters"
+    exit 1
+    ;;
+  esac
 }
 
 add_systemd() {
-    cat > /etc/systemd/system/sing-box.service << EOF
+  cat >/etc/systemd/system/sing-box.service <<EOF
 [Unit]
 Description=sing-box service
 Documentation=https://sing-box.sagernet.org
@@ -51,23 +51,28 @@ WantedBy=multi-user.target
 EOF
 }
 
-common() {
-    curl -LO "https://github.com/SagerNet/sing-box/releases/download/v$version/$package.tar.gz"
-    tar xzvf "$package.tar.gz"
-    location="${package}/sing-box"
+add_configuration() {
+  mkdir -p /etc/sing-box
 
-    mv "$location" /usr/bin/
-    sing-box version | tee
+}
+
+common() {
+  curl -LO "https://github.com/SagerNet/sing-box/releases/download/v$version/$package.tar.gz"
+  tar xzvf "$package.tar.gz"
+  location="${package}/sing-box"
+
+  mv "$location" /usr/bin/
+  sing-box version | tee
 }
 
 add_sing_box_v3() {
-    common
+  common
 }
 
 update_sing_box_v3() {
-    systemctl stop sing-box
-    common
-    systemctl start sing-box
+  systemctl stop sing-box
+  common
+  systemctl start sing-box
 }
 
 rm_all() {
