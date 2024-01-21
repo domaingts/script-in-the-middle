@@ -181,7 +181,7 @@ EOF
 
 uninstall() {
   systemctl stop sing-box && systemctl disable sing-box
-  rm -rf /etc/sing-box /var/lib/sing-box /usr/bin/sing-box /etc/systemd/system/sing-box.service
+  rm -rf /etc/sing-box /var/lib/sing-box /usr/bin/sing-box /etc/systemd/system/sing-box.service /etc/systemd/system/sing-box@.service
 }
 
 common() {
