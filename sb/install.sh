@@ -51,6 +51,7 @@ EOF
 
 add_configuration() {
   mkdir -p /etc/sing-box
+  pwd="$(openssl rand -base64 32)"
   cat << EOF > /etc/sing-box/config.json
 {
   "log": {
@@ -73,7 +74,7 @@ add_configuration() {
       "listen_port": 1,
       "network": "tcp",
       "method": "2022-blake3-chacha20-poly1305",
-      "password": ""
+      "password": "$pwd"
     }
   ],
   "outbounds": [
