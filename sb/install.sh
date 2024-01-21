@@ -61,7 +61,7 @@ add_configuration() {
     "servers": [
       {
         "tag": "cloudflare",
-        "address": "https://1.1.1.1"
+        "address": "https://1.1.1.1/dns-query"
       }
     ]
   },
