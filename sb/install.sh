@@ -52,7 +52,8 @@ EOF
 add_configuration() {
   mkdir -p /etc/sing-box
   pwd="$(openssl rand -base64 32)"
-  "echo" "$pwd"
+  port="$(( RANDOM % 30000 ) + 1000)"
+  "echo" "$pwd" "$port"
   cat << EOF > /etc/sing-box/config.json
 {
   "log": {
@@ -72,7 +73,7 @@ add_configuration() {
       "type": "shadowsocks",
       "tag": "ss-in",
       "listen": "::1",
-      "listen_port": 21,
+      "listen_port": "$port",
       "network": "tcp",
       "method": "2022-blake3-chacha20-poly1305",
       "password": "$pwd"
@@ -109,12 +110,10 @@ add_configuration() {
         "rule_set": [
           "geoip-cn",
           "geosite-cn",
+          "geosite-block",
           "geosite-ads"
         ],
         "rule_set_ipcidr_match_source": true,
-        "domain_regex": [
-          "^[a-zA-Z0-9\\-]*(\\.)*(cn|([a-zA-Z]*china)|msn)\\.[a-zA-Z0-9\\-]*(\\.)*com$"
-        ],
         "outbound": "block"
       }
     ],
@@ -142,6 +141,12 @@ add_configuration() {
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/domaingts/script-in-the-middle/rules/play.rule"
+      },
+      {
+        "tag": "geosite-block",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/domaingts/script-in-the-middle/rules/block.rule"
       }
     ],
     "final": "direct"
