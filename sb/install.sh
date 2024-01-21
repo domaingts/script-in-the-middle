@@ -4,6 +4,8 @@
 
 # package="sing-box-$version-linux-amd64v3"
 
+TEMPD=""
+
 action='0'
 
 judgement_parameters() {
@@ -57,6 +59,8 @@ add_configuration() {
 }
 
 common() {
+  TEMPD="$(maktemp -d)"
+  "echo" "$TEMPD"
   local temp_file
   temp_file="$(mktemp)"
   if ! curl -sS -H "Accept: application/vnd.github.v3+json" -o "$temp_file" 'https://api.github.com/repos/SagerNet/sing-box/releases/latest'; then
@@ -67,9 +71,9 @@ common() {
   "rm" "$temp_file"
   version="${version#v}"
   package="sing-box-$version-linux-amd64v3"
-  curl -LO "https://github.com/SagerNet/sing-box/releases/download/v$version/$package.tar.gz"
-  tar xzvf "$package.tar.gz"
-  location="${package}/sing-box"
+  curl -L "https://github.com/SagerNet/sing-box/releases/download/v$version/$package.tar.gz" -o "$TEMPD"
+  tar xzvf "$TEMPD/$package.tar.gz"
+  location="$TEMPD/${package}/sing-box"
 
   mv "$location" /usr/bin/
   sing-box version | tee
@@ -86,7 +90,7 @@ update_sing_box_v3() {
 }
 
 rm_all() {
-  "rm" "-rf" "sing-box*"
+  "rm" "-rf" "$TEMPD"
 }
 
 main() {
