@@ -167,7 +167,6 @@ uninstall() {
 
 common() {
   TEMPD="$(mktemp -d)"
-  "echo" "$TEMPD"
   local temp_file
   temp_file="$(mktemp)"
   if ! curl -sS -H "Accept: application/vnd.github.v3+json" -o "$temp_file" 'https://api.github.com/repos/SagerNet/sing-box/releases/latest'; then
