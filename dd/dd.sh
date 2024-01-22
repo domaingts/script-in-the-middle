@@ -5,7 +5,6 @@ password=""
 password_generate() {
   length=$((($RANDOM % 5) + 25))
   password="$(tr -dc 'A-Za-z0-9!"#$%&'\''()*+,-./:;<=>?@[\]^_`{|}~' </dev/urandom | head -c $length)"
-  "echo" "$password"
 }
 
 dd() {
@@ -14,9 +13,14 @@ dd() {
   && "bash" "InstallNET.sh" "-debian" "12" "-pwd" "$password"
 }
 
+print() {
+  "echo" "$password"
+}
+
 main() {
   password_generate
   dd
+  print
 }
 
 main
