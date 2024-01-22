@@ -18,7 +18,7 @@ install() {
 }
 
 post_install() {
-  apt purge -y gpg
+  apt purge -y gnupg2
 }
 
 main() {
