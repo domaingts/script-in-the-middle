@@ -4,6 +4,8 @@ TEMPD=""
 
 action='0'
 
+architect='0'
+
 judgement_parameters() {
   case "$1" in
   'install')
@@ -26,6 +28,17 @@ judgement_parameters() {
     exit 1
     ;;
   esac
+}
+
+get_cpu_version() {
+  cpu_version="$(cat "/proc/cpuinfo" | grep -oP 'model name.*: \K.*' | head -n 1 | grep -oiP 'v\K[1-4]{1}')"
+  if [[ $cpu_version -ge 3 ]]; then
+    architect=1
+  elif [[ -n $(cat "/proc/cpuinfo" | grep -oP 'model name.*: \K.*' | head -n 1 | grep -oiP 'amd') ]]; then
+    architect=1
+  else
+    architect=0
+  fi
 }
 
 add_systemd() {
@@ -176,7 +189,12 @@ common() {
   version="$(sed 'y/,/\n/' "$temp_file" | grep 'tag_name' | awk -F '"' '{print $4}')"
   "rm" "$temp_file"
   version="${version#v}"
-  package="sing-box-$version-linux-amd64v3"
+  get_cpu_version
+  if [[ $architect == 1 ]]; then
+    package="sing-box-$version-linux-amd64v3"
+  else
+    package="sing-box-$version-linux-amd64"
+  fi
   curl -L "https://github.com/SagerNet/sing-box/releases/download/v$version/$package.tar.gz" -o "$TEMPD/$package.tar.gz"
   tar Cxzvf "$TEMPD" "$TEMPD/$package.tar.gz"
   location="$TEMPD/${package}/sing-box"
@@ -185,12 +203,12 @@ common() {
   sing-box version | tee
 }
 
-add_sing_box_v3() {
+add_sing_box() {
   add_configuration
   common
 }
 
-update_sing_box_v3() {
+update_sing_box() {
   systemctl stop sing-box
   common
   systemctl start sing-box
@@ -206,12 +224,12 @@ main() {
   if [[ "$action" -eq '1' ]]; then
     uninstall
     add_systemd
-    add_sing_box_v3
+    add_sing_box
     rm_all
   elif [[ "$action" -eq '2' ]]; then
     uninstall
   elif [[ "$action" -eq '3' ]]; then
-    update_sing_box_v3
+    update_sing_box
     rm_all
   elif [[ "$action" -eq '4' ]]; then
     journalctl -fu sing-box -o cat

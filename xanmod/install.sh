@@ -7,7 +7,14 @@ pre_install() {
 }
 
 get_cpu_version() {
-  version="$(cat "/proc/cpuinfo" | grep -oP 'model name.*: \K.*' | head -n 1 | grep -oiP 'v\K[1-4]{1}')"
+  cpu_version="$(cat "/proc/cpuinfo" | grep -oP 'model name.*: \K.*' | head -n 1 | grep -oiP 'v\K[1-4]{1}')"
+  if [[ $cpu_version -ge 2 ]]; then
+    version=$cpu_version
+  elif [[ -n $(cat "/proc/cpuinfo" | grep -oP 'model name.*: \K.*' | head -n 1 | grep -oiP 'amd') ]]; then
+    version=3
+  else
+    version=2
+  fi
 }
 
 get_version() {
