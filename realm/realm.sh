@@ -62,3 +62,5 @@ main() {
     add_configuration
     download
 }
+
+main
