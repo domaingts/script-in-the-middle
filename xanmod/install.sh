@@ -3,7 +3,7 @@
 version='0'
 
 pre_install() {
-  apt install gnupg2 -y
+  apt install gnupg2 wget ca-certificates lsb-release debian-archive-keyring -y
 }
 
 get_cpu_version() {
