@@ -15,7 +15,7 @@ tar Cxzvf /opt/cni/bin "$cni_file"
 
 curl -sSLO "$nerd"
 
-tar Cxzvvf /usr/local/bin "$nerd_file"
+tar Cxzvf /usr/local/bin "$nerd_file"
 
 rm "$cni_file" "$nerd_file"
 
