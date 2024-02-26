@@ -220,8 +220,7 @@ pre_update() {
   local i
   for i in "${!releases_list[@]}"
   do
-    version="${releases_list[$i]#v}"
-    break
+    version="${releases_list[$i]#v}" && break
   done
   get_cpu_version
   if [[ $architect == 1 ]]; then
