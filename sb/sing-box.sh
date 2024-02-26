@@ -217,11 +217,8 @@ pre_update() {
   local releases_list
   releases_list="$(sed 'y/,/\n/' "$temp_file" | grep 'tag_name' | awk -F '"' '{print $4}')"
   "rm" "$temp_file"
-  local i
-  for i in "${!releases_list[@]}"
-  do
-    version="${releases_list[$i]#v}" && break
-  done
+ 
+  version="${releases_list[0]#v}"
   "echo" "$version"
   get_cpu_version
   if [[ $architect == 1 ]]; then
