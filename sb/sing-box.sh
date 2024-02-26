@@ -215,12 +215,10 @@ pre_update() {
     echo 'error: Failed to get release list, please check your network.'
   fi
   local releases_list
-  releases_list="$(sed 'y/,/\n/' "$temp_file" | grep 'tag_name' | awk -F '"' '{print $4}')"
+  releases_list="$(sed 'y/,/\n/' "$temp_file" | grep 'tag_name' | awk -F '"' '{print $4}' | head -n 1)"
   "rm" "$temp_file"
  
   version="${releases_list[0]#v}"
-  "echo" "${releases_list[0]}"
-  "echo" "$version"
   get_cpu_version
   if [[ $architect == 1 ]]; then
     package="sing-box-$version-linux-amd64v3"
