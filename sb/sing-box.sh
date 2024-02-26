@@ -222,6 +222,7 @@ pre_update() {
   do
     version="${releases_list[$i]#v}" && break
   done
+  "echo" "$version"
   get_cpu_version
   if [[ $architect == 1 ]]; then
     package="sing-box-$version-linux-amd64v3"
