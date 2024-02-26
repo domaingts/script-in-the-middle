@@ -219,6 +219,7 @@ pre_update() {
   "rm" "$temp_file"
  
   version="${releases_list[0]#v}"
+  "echo" "${releases_list[0]}"
   "echo" "$version"
   get_cpu_version
   if [[ $architect == 1 ]]; then
