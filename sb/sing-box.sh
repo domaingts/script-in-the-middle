@@ -80,7 +80,7 @@ add_configuration() {
     "servers": [
       {
         "tag": "cloudflare",
-        "address": "https://1.1.1.1/dns-query"
+        "address": "tls://1.1.1.1"
       }
     ]
   },
@@ -116,50 +116,50 @@ add_configuration() {
         "outbound": "dns-out"
       },
       {
-        "rule_set": [
-          "geosite-play"
-        ],
+        "rule_set": "cnip",
+        "ip_is_private": true,
+        "rule_set_ipcidr_match_source": true,
+        "outbound": "block"
+      },
+      {
+        "rule_set": "play",
         "outbound": "direct"
       },
       {
-        "ip_is_private": true,
         "rule_set": [
-          "geoip-cn",
-          "geosite-cn",
-          "geosite-block",
-          "geosite-ads"
+          "cn",
+          "ads"
         ],
-        "rule_set_ipcidr_match_source": true,
         "outbound": "block"
       }
     ],
     "rule_set": [
       {
-        "tag": "geoip-cn",
+        "tag": "cnip",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/SagerNet/sing-geoip/rule-set/geoip-cn.srs"
       },
       {
-        "tag": "geosite-cn",
+        "tag": "cn",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-cn.srs"
       },
       {
-        "tag": "geosite-ads",
+        "tag": "ads",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-category-ads-all.srs"
       },
       {
-        "tag": "geosite-play",
+        "tag": "play",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/domaingts/script-in-the-middle/rules/play.rule"
       },
       {
-        "tag": "geosite-block",
+        "tag": "block",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/domaingts/script-in-the-middle/rules/block.rule"
