@@ -11,3 +11,6 @@ bash -c "$(curl -sSL https://raw.githubusercontent.com/domaingts/script-in-the-m
 
 ## dd your vps
 bash <(curl -sSL https://raw.githubusercontent.com/domaingts/script-in-the-middle/main/dd/dd.sh)
+
+## download realm
+bash <(curl -sSL https://raw.githubusercontent.com/domaingts/script-in-the-middle/main/realm/realm.sh)
