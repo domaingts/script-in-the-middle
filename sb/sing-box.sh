@@ -80,7 +80,7 @@ add_configuration() {
     "servers": [
       {
         "tag": "cloudflare",
-        "address": "tls://1.1.1.1"
+        "address": "https://1.1.1.1/dns-query"
       }
     ]
   },
@@ -118,7 +118,7 @@ add_configuration() {
       {
         "rule_set": "cnip",
         "ip_is_private": true,
-        "rule_set_ipcidr_match_source": true,
+        "rule_set_ip_cidr_match_source": true,
         "outbound": "block"
       },
       {
@@ -157,12 +157,6 @@ add_configuration() {
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/domaingts/script-in-the-middle/rules/play.rule"
-      },
-      {
-        "tag": "block",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://raw.githubusercontent.com/domaingts/script-in-the-middle/rules/block.rule"
       }
     ],
     "final": "direct"
