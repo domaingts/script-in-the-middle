@@ -498,7 +498,7 @@ install_xray() {
       "tag": "ss-in",
       "settings": {
         "method": "2022-blake3-aes-128-gcm",
-        "password": ",
+        "password": "",
         "network": "tcp"
       }
     }
