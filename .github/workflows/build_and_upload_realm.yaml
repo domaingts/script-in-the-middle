@@ -26,10 +26,10 @@ jobs:
           command: build
           args: --release --target=x86_64-unknown-linux-gnu --features 'mi-malloc'
       
-     - name: Package the Binary
-       run: |
-        mv target/x86_64-unknown-freebsd/release/realm .
-        tar czvf realm.tar.gz realm
+      - name: Package the Binary
+        run: |
+          mv target/x86_64-unknown-freebsd/release/realm .
+          tar czvf realm.tar.gz realm
 
 #      - name: Debug
 #        run: ls -R target/x86_64-unknown-freebsd/release/
