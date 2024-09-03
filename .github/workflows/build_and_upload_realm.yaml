@@ -28,7 +28,7 @@ jobs:
       
       - name: Package the Binary
         run: |
-          mv target/x86_64-unknown-freebsd/release/realm .
+          mv target/x86_64-unknown-linux-gnu/release/realm .
           tar czvf realm.tar.gz realm
 
 #      - name: Debug
