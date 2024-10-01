@@ -17,3 +17,6 @@ bash <(curl -sSL https://raw.githubusercontent.com/domaingts/script-in-the-middl
 
 ## download realm
 bash <(curl -sSL https://raw.githubusercontent.com/domaingts/script-in-the-middle/main/realm/realm.sh)
+
+## download gurl
+bash <(curl -sSL https://raw.githubusercontent.com/domaingts/script-in-the-middle/refs/heads/main/gurl/install.sh)
