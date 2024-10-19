@@ -55,6 +55,7 @@ download() {
     location="$TEMPD/realm"
     mv "$location" /usr/bin/
     realm -v | tee
+    "rm" "-rf" "$TEMPD"
 }
 
 main() {
