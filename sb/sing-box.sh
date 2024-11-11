@@ -111,7 +111,7 @@ add_configuration() {
         "rule_set": "cnip",
         "ip_is_private": true,
         "rule_set_ip_cidr_match_source": true,
-        "action": :reject"
+        "action": "reject"
       },
       {
         "rule_set": "play",
@@ -122,7 +122,7 @@ add_configuration() {
           "cn",
           "ads"
         ],
-        "outbound": "block"
+        "action": "reject"
       }
     ],
     "rule_set": [
