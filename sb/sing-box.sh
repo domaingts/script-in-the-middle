@@ -99,27 +99,19 @@ add_configuration() {
     {
       "type": "direct",
       "tag": "direct"
-    },
-    {
-      "type": "dns",
-      "tag": "dns-out"
-    },
-    {
-      "type": "block",
-      "tag": "block"
     }
   ],
   "route": {
     "rules": [
       {
         "protocol": "dns",
-        "outbound": "dns-out"
+        "action": "hijack-dns"
       },
       {
         "rule_set": "cnip",
         "ip_is_private": true,
         "rule_set_ip_cidr_match_source": true,
-        "outbound": "block"
+        "action": :reject"
       },
       {
         "rule_set": "play",
