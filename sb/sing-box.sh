@@ -206,11 +206,7 @@ pre_update() {
  
   version="${releases_list[0]#v}"
   get_cpu_version
-  if [[ $architect == 1 ]]; then
-    package="sing-box-$version-linux-amd64v3"
-  else
-    package="sing-box-$version-linux-amd64"
-  fi
+  package="sing-box-$version-linux-amd64"
   curl -L "https://github.com/SagerNet/sing-box/releases/download/v$version/$package.tar.gz" -o "$TEMPD/$package.tar.gz"
   tar Cxzvf "$TEMPD" "$TEMPD/$package.tar.gz"
   location="$TEMPD/${package}/sing-box"
