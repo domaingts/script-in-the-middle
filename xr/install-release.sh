@@ -583,7 +583,11 @@ Documentation=https://github.com/xtls
 After=network.target nss-lookup.target
 
 [Service]
-DynamicUser=yes
+User=xrat
+Group=xray
+ProtectHome=yes
+NoNewPrivileges=true
+PrivateTmp=true
 ${temp_CapabilityBoundingSet}
 ${temp_AmbientCapabilities}
 ${temp_NoNewPrivileges}
