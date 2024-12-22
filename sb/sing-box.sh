@@ -52,6 +52,11 @@ Documentation=https://sing-box.sagernet.org
 After=network.target nss-lookup.target network-online.target
 
 [Service]
+User=sing-box
+Group=sing-box
+ProtectHome=yes
+NoNewPrivileges=true
+PrivateTmp=true
 CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE CAP_SYS_PTRACE CAP_DAC_READ_SEARCH
 AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE CAP_SYS_PTRACE CAP_DAC_READ_SEARCH
 ExecStart=/usr/bin/sing-box -D /var/lib/sing-box -C /etc/sing-box run
@@ -165,6 +170,12 @@ EOF
 uninstall() {
   systemctl stop sing-box && systemctl disable sing-box
   rm -rf /etc/sing-box /var/lib/sing-box /usr/bin/sing-box /etc/systemd/system/sing-box.service
+}
+
+add_user() {
+  useradd --no-create-home --shell /bin/false sing-box
+  mkdir -p /var/lib/sing-box
+  chown sing-box:sing-box /var/lib/sing-box
 }
 
 common() {
