@@ -583,7 +583,7 @@ Documentation=https://github.com/xtls
 After=network.target nss-lookup.target
 
 [Service]
-User=xrat
+User=xray
 Group=xray
 ProtectHome=yes
 NoNewPrivileges=true
