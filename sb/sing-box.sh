@@ -229,6 +229,7 @@ pre_update() {
 
 add_sing_box() {
   add_configuration
+  add_user
   common
 }
 
