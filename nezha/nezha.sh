@@ -50,14 +50,14 @@ temperature: false
 tls: true
 use_gitee_to_upgrade: false
 use_ipv6_country_code: false
-uuid: 
+uuid: $(curl -sSL $3)
 EOF
 }
 
 main() {
-  add_configuration $1 $2
+  add_configuration $1 $2 $3
   add_user
   add_systemd
 }
 
-main $1 $2
+main $1 $2 $3
