@@ -596,6 +596,9 @@ Restart=on-failure
 RestartPreventExitStatus=23
 LimitNPROC=10000
 LimitNOFILE=1000000
+MemoryMax=60M
+StartLimitInterval=10
+StartLimitBurst=3
 
 [Install]
 WantedBy=multi-user.target
