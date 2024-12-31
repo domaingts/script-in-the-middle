@@ -25,4 +25,4 @@ bash <(curl -sSL https://raw.githubusercontent.com/domaingts/script-in-the-middl
 bash -c "$(curl -sSL https://raw.githubusercontent.com/domaingts/script-in-the-middle/refs/heads/main/xanmod/install.sh)" @ 3
 
 ## add optimizing parameters
-bash <(cur -sSL https://raw.githubusercontent.com/domaingts/script-in-the-middle/refs/heads/main/xanmod/optimizing.sh)
+bash <(curl -sSL https://raw.githubusercontent.com/domaingts/script-in-the-middle/refs/heads/main/xanmod/optimizing.sh)
