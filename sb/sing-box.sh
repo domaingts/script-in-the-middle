@@ -90,7 +90,8 @@ add_configuration() {
         "tag": "cloudflare",
         "address": "https://1.1.1.1/dns-query"
       }
-    ]
+    ],
+    "cache_capacity": 2048
   },
   "inbounds": [
     {
