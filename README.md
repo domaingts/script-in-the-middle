@@ -9,6 +9,9 @@ curl -fsSL -o docker-compose.yaml https://raw.githubusercontent.com/domaingts/sc
 ## download sb
 bash -c "$(curl -sSL https://raw.githubusercontent.com/domaingts/script-in-the-middle/main/sb/sing-box.sh)" @ install
 
+## update sb systemd
+bash -c "$(curl -sSL https://raw.githubusercontent.com/domaingts/script-in-the-middle/main/sb/update_systemd.sh)"
+
 ## download xr
 bash -c "$(curl -sSL https://raw.githubusercontent.com/domaingts/script-in-the-middle/main/xr/install-release.sh)" @ install
 
