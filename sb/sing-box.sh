@@ -64,7 +64,7 @@ ExecReload=/bin/kill -HUP \$MAINPID
 Restart=on-failure
 RestartSec=10s
 LimitNOFILE=infinity
-MemoryMax=80M
+MemoryMax=200M
 StartLimitInterval=10
 StartLimitBurst=3
 
