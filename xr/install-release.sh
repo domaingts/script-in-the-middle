@@ -583,8 +583,8 @@ Documentation=https://github.com/xtls
 After=network.target nss-lookup.target
 
 [Service]
-User=xray
-Group=xray
+User=proxy
+Group=proxy
 ProtectHome=yes
 NoNewPrivileges=true
 PrivateTmp=true
@@ -596,7 +596,7 @@ Restart=on-failure
 RestartPreventExitStatus=23
 LimitNPROC=10000
 LimitNOFILE=1000000
-MemoryMax=60M
+MemoryMax=200M
 StartLimitInterval=10
 StartLimitBurst=3
 
