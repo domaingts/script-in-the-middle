@@ -179,7 +179,7 @@ uninstall() {
 add_user() {
   useradd --no-create-home --shell /bin/false proxy
   mkdir -p /var/lib/sing-box
-  chown sing-box:sing-box /var/lib/sing-box
+  chown proxy:proxy /var/lib/sing-box
 }
 
 common() {
