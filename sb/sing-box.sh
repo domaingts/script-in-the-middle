@@ -52,8 +52,8 @@ Documentation=https://sing-box.sagernet.org
 After=network.target nss-lookup.target network-online.target
 
 [Service]
-User=proxy
-Group=proxy
+User=bypass
+Group=bypass
 ProtectHome=yes
 NoNewPrivileges=true
 PrivateTmp=true
@@ -177,9 +177,9 @@ uninstall() {
 }
 
 add_user() {
-  useradd --no-create-home --shell /bin/false proxy
+  useradd --no-create-home --shell /bin/false bypass
   mkdir -p /var/lib/sing-box
-  chown proxy:proxy /var/lib/sing-box
+  chown bypass:bypass /var/lib/sing-box
 }
 
 common() {
