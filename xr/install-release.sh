@@ -583,8 +583,8 @@ Documentation=https://github.com/xtls
 After=network.target nss-lookup.target
 
 [Service]
-User=proxy
-Group=proxy
+User=bypass
+Group=bypass
 ProtectHome=yes
 NoNewPrivileges=true
 PrivateTmp=true
