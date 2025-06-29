@@ -3,7 +3,7 @@
 version='0'
 
 pre_install() {
-  apt install gnupg2 wget ca-certificates lsb-release debian-archive-keyring -y
+  apt install gnupg2 -y
 }
 
 get_cpu_version() {
@@ -28,9 +28,9 @@ get_version() {
 install() {
   get_version "$@"
   echo "$version"
-  wget -qO - https://dl.xanmod.org/archive.key | gpg --dearmor -o /usr/share/keyrings/xanmod-archive-keyring.gpg
-  echo 'deb [signed-by=/usr/share/keyrings/xanmod-archive-keyring.gpg] http://deb.xanmod.org releases main' | tee /etc/apt/sources.list.d/xanmod-release.list
-  apt update -y && "apt" "install" "linux-xanmod-x64v$version" "-y"
+  wget -qO - https://dl.xanmod.org/archive.key | gpg --dearmor -vo /etc/apt/keyrings/xanmod-archive-keyring.gpg
+  echo 'deb [signed-by=/etc/apt/keyrings/xanmod-archive-keyring.gpg] http://deb.xanmod.org releases main' | tee /etc/apt/sources.list.d/xanmod-release.list
+  apt update -y && "apt" "install" "--no-install-recommends" "clang" "lld" "llvm" "libelf-dev" "linux-xanmod-x64v$version" "-y"
 }
 
 post_install() {
