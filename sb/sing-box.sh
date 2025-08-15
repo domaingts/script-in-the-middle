@@ -64,7 +64,7 @@ ExecReload=/bin/kill -HUP \$MAINPID
 Restart=on-failure
 RestartSec=10s
 LimitNOFILE=infinity
-MemoryMax=200M
+MemoryMax=256M
 StartLimitInterval=10
 StartLimitBurst=3
 
@@ -88,7 +88,8 @@ add_configuration() {
     "servers": [
       {
         "tag": "cloudflare",
-        "address": "https://1.1.1.1/dns-query"
+        "type": "https",
+        "server": "1.1.1.1"
       }
     ],
     "cache_capacity": 2048
