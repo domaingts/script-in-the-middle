@@ -147,9 +147,9 @@ uninstall() {
 
 add_user() {
   useradd --no-create-home --shell /bin/false bypass
-  mkdir -p /usr/local/share
-  curl -L https://github.com/Loyalsoldier/v2ray-rules-dat/releases/download/202512122214/geosite.dat -o /usr/local/share/geosite.dat
-  curl -L https://github.com/Loyalsoldier/v2ray-rules-dat/releases/download/202512122214/geoip.dat -o /usr/local/share/geoip.dat
+  mkdir -p /usr/local/share/xray
+  curl -L https://github.com/Loyalsoldier/v2ray-rules-dat/releases/download/202512122214/geosite.dat -o /usr/local/share/xray/geosite.dat
+  curl -L https://github.com/Loyalsoldier/v2ray-rules-dat/releases/download/202512122214/geoip.dat -o /usr/local/share/xray/geoip.dat
 }
 
 common() {
