@@ -13,7 +13,7 @@ bash -c "$(curl -sSL https://raw.githubusercontent.com/domaingts/script-in-the-m
 bash -c "$(curl -sSL https://raw.githubusercontent.com/domaingts/script-in-the-middle/main/sb/update_systemd.sh)"
 
 ## download xr
-bash -c "$(curl -sSL https://raw.githubusercontent.com/domaingts/script-in-the-middle/main/xr/install-release.sh)" @ install
+bash -c "$(curl -sSL https://raw.githubusercontent.com/domaingts/script-in-the-middle/main/xr/xr.sh)" @ install
 
 ## dd your vps
 bash <(curl -sSL https://raw.githubusercontent.com/domaingts/script-in-the-middle/main/dd/dd.sh)
