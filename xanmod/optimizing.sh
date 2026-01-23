@@ -71,7 +71,7 @@ fs.inotify.max_user_instances=8192
 fs.inotify.max_user_instances=8192
 kernel.sysrq=1
 
-vm.zone_reclaim_mode=0
+# vm.zone_reclaim_mode=0
 EOF
 
     sysctl -p
