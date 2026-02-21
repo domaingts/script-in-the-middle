@@ -2,7 +2,7 @@
 
 apt install -y jq
 
-curl "https://api.github.com/repos/domaingts/kernel-build/releases/latest" | jq -r '.assets | .[-2:].[].browser_download_url' | while read -r url; do
+curl "https://api.github.com/repos/domaingts/kernel-build/releases/latest" | jq -r '.assets | .[-2:] | .[].browser_download_url' | while read -r url; do
     curl -LO "$url"
 done
 
