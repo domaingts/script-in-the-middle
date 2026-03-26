@@ -24,8 +24,8 @@ bash <(curl -sSL https://raw.githubusercontent.com/domaingts/script-in-the-middl
 ## download gurl
 bash <(curl -sSL https://raw.githubusercontent.com/domaingts/script-in-the-middle/refs/heads/main/gurl/install.sh)
 
-## download xanmoad kernel
-bash -c "$(curl -sSL https://raw.githubusercontent.com/domaingts/script-in-the-middle/refs/heads/main/xanmod/install.sh)" @ 3
+## download|update xanmoad kernel
+bash -c "$(curl -sSL https://raw.githubusercontent.com/domaingts/script-in-the-middle/refs/heads/main/xanmod/update.sh)"
 
 ## add optimizing parameters
 bash <(curl -sSL https://raw.githubusercontent.com/domaingts/script-in-the-middle/refs/heads/main/xanmod/optimizing.sh)
